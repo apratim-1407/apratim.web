@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="dark">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Contact • Apratim</title>
+  <link rel="icon" type="image/png" href="assets/icons/smile.png">
+
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+  <!-- Background symbol shower -->
+  <div id="symbol-shower" aria-hidden="true"></div>
+
+  <!-- Top Bar (centered container) -->
+  <header class="nav">
+  <div class="nav-inner">
+    <a class="logo brand" href="index1.html" aria-label="Home">Ap</a>
+    <nav class="nav-links">
+      <a href="projects.html">Projects</a>
+      <a href="blogs.html">Blog</a>   <!-- <- make sure this is blogs.html -->
+      <a class="btn" href="contact.html" aria-current="page">Contact</a>
+      <button id="themeToggle" class="icon-btn" aria-label="Toggle theme" title="Toggle theme">🌓</button>
+    </nav>
+  </div>
+</header>
+
+
+  <!-- Contact Section (minimal, no extra blocks) -->
+  <main class="intro-wrap">
+    <section class="intro-stack">
+      <h1>Contact</h1>
+      <p class="lede">Let’s connect whether it’s about projects, internships, collaborations or just experiences.</p>
+    <br>
+      <!-- Core contact details -->
+      <p class="muted">
+        <strong>Address:</strong>
+        <a href="https://www.google.com/maps/place/UPES/@30.4158747,77.9641721,805m/data=!3m2!1e3!4b1!4m6!3m5!1s0x3908d4890d7c1735:0x22d3ae324c238e3c!8m2!3d30.4158747!4d77.966747!16s%2Fm%2F0661089?entry=ttu&g_ep=EgoyMDI1MTAyMi4wIKXMDSoASAFQAw%3D%3D" target="_blank" rel="noopener" style="text-decoration: none;">
+          University Of Petroleum and Energy Studies, Bidholi, Pondha, Via Prem Nagar Dehradun, Uttarakhand - 248007
+        </a>
+      </p>
+      <p class="muted">
+        <strong>Email:</strong>
+        <a href="mailto:apratim1424@gmail.com" style="text-decoration: none;">apratim1424@gmail.com</a>
+      </p>
+
+      <!-- Optional quick links -->
+      <div class="social-row" aria-label="Social profiles">
+        <!-- Replace href values with your real profile URLs -->
+        <a class="social" href="https://www.youtube.com/@apratimsaxena" target="_blank" rel="noopener" aria-label="YouTube">
+          <img src="assets/icons/youtube.png" alt="">
+        </a>
+        <a class="social" href="https://www.instagram.com/apratim.14/?next=%2F" target="_blank" rel="noopener" aria-label="Instagram">
+          <img src="assets/icons/instagram.png" alt="">
+        </a>
+        <a class="social" href="https://www.linkedin.com/in/apratim-saxena/" target="_blank" rel="noopener" aria-label="LinkedIn">
+          <img src="assets/icons/linkedin.png" alt="">
+        </a>
+      </div>
+    </section>
+  </main>
+
+  <!-- ✅ FOOTER START (add this before </body>) -->
+  <footer class="site-footer">
+    <p>© 2025 Apratim Saxena. All rights reserved.</p>
+  </footer>
+  <!-- ✅ FOOTER END -->
+
+  <script>
+    // --- Theme toggle (persisted) ---
+    (function(){
+      const root = document.documentElement;
+      const saved = localStorage.getItem("theme");
+      if (saved) root.setAttribute("data-theme", saved);
+      const btn = document.getElementById("themeToggle");
+      btn.addEventListener("click", () => {
+        const current = root.getAttribute("data-theme") || "dark";
+        const next = current === "dark" ? "light" : "dark";
+        root.setAttribute("data-theme", next);
+        localStorage.setItem("theme", next);
+      });
+    })();
+
+    // --- Visible-on-launch symbol shower (same as index) ---
+    (function(){
+      const container = document.getElementById("symbol-shower");
+      const symbols = [
+        "α","β","γ","Δ","Σ","Π","λ","Ω","π","Φ",
+        "{","}","<",">",";","/","$","₹","€","₿",
+        "0","1","≅","≈","±","∂","µ","σ","∈","∞"
+      ];
+      const COUNT = 44;
+      const MIN_DUR = 16000;
+      const MAX_DUR = 34000;
+      const MIN_SIZE = 14;
+      const MAX_SIZE = 40;
+      const rand = (min, max) => Math.random() * (max - min) + min;
+
+      function spawn(initial=false) {
+        const s = document.createElement("span");
+        s.className = "shower-symbol";
+        s.textContent = symbols[Math.floor(Math.random()*symbols.length)];
+        const left = rand(-5, 100);
+        const size = rand(MIN_SIZE, MAX_SIZE);
+        const dur  = rand(MIN_DUR, MAX_DUR);
+        let delay;
+        if (initial && Math.random() < 0.7) delay = -rand(0, dur);
+        else delay = rand(0, MAX_DUR * 0.6);
+
+        s.style.left = left + "vw";
+        s.style.fontSize = size + "px";
+        s.style.animationDuration = dur + "ms";
+        s.style.animationDelay = delay + "ms";
+        s.style.filter = "blur(" + (size < 22 ? 1.5 : 2.5) + "px)";
+        s.style.opacity = 0.5;
+        s.style.setProperty("--twist", Math.random() < 0.5 ? "-6deg" : "6deg");
+
+        container.appendChild(s);
+        s.addEventListener("animationend", () => { s.remove(); spawn(false); });
+      }
+      for (let i = 0; i < COUNT; i++) spawn(true);
+    })();
+  </script>
+</body>
+</html>

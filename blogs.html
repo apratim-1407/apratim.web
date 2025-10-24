@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="dark">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Blog • Apratim</title>
+  <link rel="icon" type="image/png" href="assets/icons/smile.png">
+
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+  <!-- Background -->
+  <div id="symbol-shower" aria-hidden="true"></div>
+
+  <!-- Nav -->
+  <header class="nav nav-minimal">
+    <div class="nav-inner">
+      <a class="logo brand" href="index1.html" aria-label="Home">Ap</a>
+      <nav class="nav-links">
+        <a href="projects.html">Projects</a>
+        <a href="blogs.html" aria-current="page">Blog</a>
+        <a class="btn" href="contact.html">Contact</a>
+        <button id="themeToggle" class="icon-btn" aria-label="Toggle theme" title="Toggle theme">🌓</button>
+      </nav>
+    </div>
+  </header>
+
+  <!-- Content -->
+  <main class="intro-wrap">
+    <section class="intro-stack">
+      <h1>Blog</h1>
+      <p class="lede">
+        My thoughts, notes, and experiences around tech, finance, and growth — all in one place.
+      </p>
+
+      <div class="blog-list">
+        <article class="blog-card">
+          <h2>📈 How I Built My Finance Tracker</h2>
+          <p class="muted">A behind-the-scenes look at how I built a simple dashboard for tracking my investments and expenses.</p>
+          <a href="#" class="btn">Read More</a>
+        </article>
+
+        <article class="blog-card">
+          <h2>☁️ Why I Love Cloud Computing</h2>
+          <p class="muted">Some personal thoughts on cloud technologies and why I think it’s the backbone of modern tech.</p>
+          <a href="#" class="btn">Read More</a>
+        </article>
+
+        <article class="blog-card">
+          <h2>🧠 What CFA Level 1 is Teaching Me</h2>
+          <p class="muted">Finance isn’t just formulas — it’s discipline, systems, and mindset. Here’s what I’ve learned so far.</p>
+          <a href="#" class="btn">Read More</a>
+        </article>
+        
+      </div>
+    </section>
+  </main>
+
+  <!-- Footer -->
+  <footer class="site-footer">
+    <p>© 2025 Apratim Saxena. All rights reserved.</p>
+  </footer>
+
+  <script>
+    // Theme toggle
+    (function(){
+      const root = document.documentElement;
+      const saved = localStorage.getItem("theme");
+      if (saved) root.setAttribute("data-theme", saved);
+      document.getElementById("themeToggle").addEventListener("click", () => {
+        const t = root.getAttribute("data-theme") || "dark";
+        const next = t === "dark" ? "light" : "dark";
+        root.setAttribute("data-theme", next);
+        localStorage.setItem("theme", next);
+      });
+    })();
+
+    // Background symbol shower
+    (function(){
+      const container = document.getElementById("symbol-shower");
+      const symbols = ["α","β","γ","Δ","Σ","Π","λ","Ω","π","Φ","{","}","<",">",";","/","$","₹","€","₿","0","1","≈","±","µ","σ","∈","∞"];
+      const COUNT = 44, MIN_DUR = 16000, MAX_DUR = 34000;
+      const rand = (a,b)=>Math.random()*(b-a)+a;
+      function spawn(initial=false){
+        const s=document.createElement("span");
+        s.className="shower-symbol";
+        s.textContent=symbols[Math.floor(Math.random()*symbols.length)];
+        const left=rand(-5,100), size=rand(14,40), dur=rand(MIN_DUR,MAX_DUR);
+        const delay=initial&&Math.random()<0.7?-rand(0,dur):rand(0,MAX_DUR*0.6);
+        Object.assign(s.style,{left:left+"vw",fontSize:size+"px",animationDuration:dur+"ms",animationDelay:delay+"ms",filter:`blur(${size<22?1.5:2.5}px)`,opacity:0.5});
+        s.style.setProperty("--twist",Math.random()<0.5?"-6deg":"6deg");
+        container.appendChild(s);
+        s.addEventListener("animationend",()=>{s.remove();spawn(false)});
+      }
+      for(let i=0;i<COUNT;i++)spawn(true);
+    })();
+  </script>
+</body>
+</html>
