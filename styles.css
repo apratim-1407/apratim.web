@@ -38,11 +38,15 @@ body {
   color: var(--text);
   background: var(--bg);
   line-height: 1.55;
+  
+  background: radial-gradient(circle at center, #0f0f0f 0%, #000000 70%);
+  color: var(--text);
+
 }
 body.no-scroll { overflow-y: hidden; }
 
 /* Background symbol shower */
-#symbol-shower {
+/* #symbol-shower {
   position: fixed;
   inset: 0;
   overflow: hidden;
@@ -62,7 +66,7 @@ body.no-scroll { overflow-y: hidden; }
 @keyframes fall {
   0%   { transform: translateY(-120%) rotate(var(--twist,0deg)); }
   100% { transform: translateY(120vh) rotate(var(--twist,0deg)); }
-}
+} */
 
 /* Top bar */
 .nav {
@@ -250,5 +254,6 @@ a, button { outline-color: var(--accent); }
     padding: 16px;
   }
 }
+
 
 
