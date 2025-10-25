@@ -31,7 +31,9 @@
 
 /* Base */
 * { box-sizing: border-box; }
-html, body { height: 100%; }
+html, body { 
+  transition: background 0.4s ease;
+  height: 100%; }
 body {
   margin: 0;
   font-family: ui-sans-serif, system-ui, -apple-system, "Segoe UI", Inter, Roboto, "Helvetica Neue", Arial;
@@ -41,6 +43,8 @@ body {
   
   background: radial-gradient(circle at center, #0f0f0f 0%, #000000 70%);
   color: var(--text);
+
+  
 
 }
 body.no-scroll { overflow-y: hidden; }
@@ -254,6 +258,7 @@ a, button { outline-color: var(--accent); }
     padding: 16px;
   }
 }
+
 
 
 
